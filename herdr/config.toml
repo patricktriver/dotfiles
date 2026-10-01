@@ -1,0 +1,46 @@
+onboarding = false
+
+[theme]
+name = "terminal"
+auto_switch = false
+
+[keys]
+# Prefix stays ctrl+b. The actions below keep their prefix key and add a
+# ctrl+alt chord, herdr's vetted prefix-free set (https://herdr.dev/docs/keyboard/).
+focus_pane_left = ["prefix+h", "ctrl+alt+h"]
+focus_pane_down = ["prefix+j", "ctrl+alt+j"]
+focus_pane_up = ["prefix+k", "ctrl+alt+k"]
+focus_pane_right = ["prefix+l", "ctrl+alt+l"]
+previous_tab = ["prefix+p", "ctrl+alt+["]
+next_tab = ["prefix+n", "ctrl+alt+]"]
+new_tab = ["prefix+c", "ctrl+alt+c"]
+split_vertical = ["prefix+v", "ctrl+alt+d"]
+split_horizontal = ["prefix+minus", "ctrl+alt+shift+d"]
+zoom = ["prefix+z", "ctrl+alt+z"]
+
+# Popups open over the layout and close when the command exits. They run via
+# a login shell so mise tools are on PATH even if the herdr server started
+# before they were installed. Descriptions show in the prefix+? help panel.
+[[keys.command]]
+key = "prefix+d"
+type = "popup"
+command = "zsh -lc 'cd \"$HERDR_ACTIVE_PANE_CWD\" && critique'"
+description = "critique: review git diff here"
+width = "90%"
+height = "90%"
+
+[[keys.command]]
+key = "prefix+f"
+type = "popup"
+command = "zsh -lc 'cd \"$HERDR_ACTIVE_PANE_CWD\" && fresh'"
+description = "fresh: editor here"
+width = "90%"
+height = "90%"
+
+[[keys.command]]
+key = "prefix+i"
+type = "popup"
+command = "zsh -lc 'keys | less -R'"
+description = "cheatsheet (keys)"
+width = "80%"
+height = "90%"

@@ -1,0 +1,8 @@
+# Global mise tools, available in every directory.
+# Symlinked to ~/.config/mise/config.toml by ~/dotfiles/mise.toml.
+
+[tools]
+node = "lts"
+bun = "latest"
+"npm:critique" = "latest"
+gitleaks = "8"

@@ -1,0 +1,3 @@
+# Work-only packages and tools; never public.
+mise.local.toml
+.DS_Store

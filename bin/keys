@@ -1,0 +1,9 @@
+#!/bin/sh
+# Print the keys cheatsheet, optionally filtered: `keys split`.
+help="$HOME/dotfiles/help.md"
+
+if [ $# -eq 0 ]; then
+  cat "$help"
+else
+  grep -i -- "$*" "$help"
+fi

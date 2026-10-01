@@ -1,0 +1,8 @@
+[user]
+	name = Patrick Byrne
+[push]
+	autoSetupRemote = true
+
+# Email, hooks and anything work-specific live here, outside the repo.
+[include]
+	path = ~/.gitconfig.local

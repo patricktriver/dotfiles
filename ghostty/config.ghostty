@@ -1,0 +1,3 @@
+# Ghostty config. Reference: `ghostty +show-config --default --docs`
+# Left as defaults on purpose: macos-option-as-alt would break Option+3 (#) on
+# a UK keyboard, and herdr's ctrl+alt chords work without it.

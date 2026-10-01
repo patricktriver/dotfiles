@@ -1,0 +1,5 @@
+#!/bin/sh
+# Public repo: block any commit that gitleaks thinks contains a secret.
+# Shims fallback covers GUI git clients and shells without mise activated.
+PATH="$PATH:$HOME/.local/share/mise/shims"
+exec gitleaks git --pre-commit --staged --redact --verbose

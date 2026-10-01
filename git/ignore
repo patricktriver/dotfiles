@@ -1,0 +1,4 @@
+**/.claude/settings.local.json
+.claude/
+paddy-scripts/
+.DS_Store
