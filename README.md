@@ -36,6 +36,7 @@ Add a brew package: a `"brew:<name>"` or `"brew-cask:<name>"` line under
 | `ghostty/`          | Ghostty's config                           |
 | `bin/keys`          | `~/.local/bin/keys`                        |
 | `bin/herdr-here`    | runs herdr popups in the current project   |
+| `bin/review`        | critique, picking a view that has something to show |
 | `help.md`           | the cheatsheet `keys` prints               |
 
 ## Not in this repo (machine-local, never committed)

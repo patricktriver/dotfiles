@@ -24,7 +24,7 @@ The mouse also works for everything: click, drag borders, right-click menus.
 
 | Key        | Does                                   |
 |------------|----------------------------------------|
-| `prefix+d` | critique: review this project's git diff |
+| `prefix+d` | critique: live diff of uncommitted changes, else staged, else last commit |
 | `prefix+f` | fresh: edit this project               |
 | `prefix+i` | this cheatsheet                        |
 
@@ -82,7 +82,9 @@ it's not a repo. Same as typing `herdr-here fresh` yourself.
 
 | Command                 | Does                              |
 |-------------------------|-----------------------------------|
-| `critique`              | review uncommitted changes        |
+| `review`                | smart pick: live unstaged diff, else staged, else last commit |
+| `critique`              | review uncommitted changes (exits if none) |
+| `critique --commit HEAD`| review the last commit            |
 | `critique --help`       | everything else                   |
 
 ## dotfiles

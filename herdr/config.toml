@@ -24,8 +24,8 @@ zoom = ["prefix+z", "ctrl+alt+z"]
 [[keys.command]]
 key = "prefix+d"
 type = "popup"
-command = "zsh -lc 'herdr-here critique'"
-description = "critique: review this project's git diff"
+command = "zsh -lc 'herdr-here review'"
+description = "critique: review changes (or last commit)"
 width = "90%"
 height = "90%"
 

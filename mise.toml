@@ -43,6 +43,7 @@
 "~/Library/Application Support/com.mitchellh.ghostty/config.ghostty" = { source = "ghostty/config.ghostty", mode = "symlink" }
 "~/.local/bin/keys" = { source = "bin/keys", mode = "symlink" }
 "~/.local/bin/herdr-here" = { source = "bin/herdr-here", mode = "symlink" }
+"~/.local/bin/review" = { source = "bin/review", mode = "symlink" }
 
 # Imperative setup the declarative sections can't express. Runs on every
 # bootstrap, so each step is guarded.

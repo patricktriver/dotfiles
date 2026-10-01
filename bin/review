@@ -1,0 +1,13 @@
+#!/bin/sh
+# Open the most useful critique view, so it never just prints "No changes
+# to display" and exits (which closes a herdr popup instantly).
+#   unstaged edits -> live diff that refreshes as files change
+#   only staged    -> staged diff
+#   nothing        -> last commit
+if ! git diff --quiet; then
+  exec critique --watch "$@"
+elif ! git diff --cached --quiet; then
+  exec critique --staged "$@"
+else
+  exec critique --commit HEAD "$@"
+fi
