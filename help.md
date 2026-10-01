@@ -26,6 +26,7 @@ The mouse also works for everything: click, drag borders, right-click menus.
 |------------|----------------------------------------|
 | `prefix+d` | critique: live diff of uncommitted changes, else staged, else last commit |
 | `prefix+f` | fresh: edit this project               |
+| `prefix+a` | lazygit: stage, commit, push, branches |
 | `prefix+i` | this cheatsheet                        |
 
 "This project" = the git repo root of the pane you're in, or its folder if
@@ -86,6 +87,18 @@ it's not a repo. Same as typing `herdr-here fresh` yourself.
 | `critique`              | review uncommitted changes (exits if none) |
 | `critique --commit HEAD`| review the last commit            |
 | `critique --help`       | everything else                   |
+
+## lazygit (git UI)
+
+| Key            | Does                                   |
+|----------------|----------------------------------------|
+| `?`            | show all keys for the current panel    |
+| `1`..`5` / `[` `]` | switch panel / tab                 |
+| `space`        | stage / unstage file                   |
+| `c`            | commit                                 |
+| `P` / `p`      | push / pull                            |
+| `enter`        | open file / commit                     |
+| `q`            | quit                                   |
 
 ## dotfiles
 

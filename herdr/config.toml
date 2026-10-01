@@ -38,6 +38,14 @@ width = "90%"
 height = "90%"
 
 [[keys.command]]
+key = "prefix+a"
+type = "popup"
+command = "zsh -lc 'herdr-here lazygit'"
+description = "lazygit: git UI for this project"
+width = "90%"
+height = "90%"
+
+[[keys.command]]
 key = "prefix+i"
 type = "popup"
 command = "zsh -lc 'keys | less -R'"

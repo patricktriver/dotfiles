@@ -4,6 +4,7 @@
 [bootstrap.packages]
 "brew:herdr" = "latest"
 "brew:fresh-editor" = "latest"
+"brew:lazygit" = "latest"
 "brew:gh" = "latest"
 "brew:usage" = "latest"
 "brew:docker" = "latest"
