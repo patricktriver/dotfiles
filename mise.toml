@@ -42,6 +42,13 @@
 "~/.config/herdr/config.toml" = { source = "herdr/config.toml", mode = "symlink" }
 "~/.config/fresh/config.json" = { source = "fresh/config.json", mode = "symlink" }
 "~/Library/Application Support/com.mitchellh.ghostty/config.ghostty" = { source = "ghostty/config.ghostty", mode = "symlink" }
+# Claude Code: only generic ways-of-working skills/commands. Work-specific
+# ones stay unversioned in ~/.claude.
+"~/.claude/commands/*.md" = { source = "claude/commands/*.md", mode = "symlink" }
+"~/.claude/skills/council" = { source = "claude/skills/council", mode = "symlink" }
+"~/.claude/skills/stop-slop" = { source = "claude/skills/stop-slop", mode = "symlink" }
+"~/.claude/skills/wrap-up" = { source = "claude/skills/wrap-up", mode = "symlink" }
+"~/.claude/skills/pr-off-main" = { source = "claude/skills/pr-off-main", mode = "symlink" }
 "~/.local/bin/keys" = { source = "bin/keys", mode = "symlink" }
 "~/.local/bin/herdr-here" = { source = "bin/herdr-here", mode = "symlink" }
 "~/.local/bin/review" = { source = "bin/review", mode = "symlink" }
