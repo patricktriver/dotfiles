@@ -36,13 +36,14 @@ Add a brew package: a `"brew:<name>"` or `"brew-cask:<name>"` line under
 | `ghostty/`          | Ghostty's config                           |
 | `claude/`           | `~/.claude/CLAUDE.md`, `~/.claude/RTK.md`  |
 | `bin/keys`          | `~/.local/bin/keys`                        |
+| `bin/herdr-here`    | runs herdr popups in the current project   |
 | `help.md`           | the cheatsheet `keys` prints               |
 
 ## Not in this repo (machine-local, never committed)
 
 - `~/.zshrc.local`: sourced at the end of `.zshrc`
 - `~/.gitconfig.local`: email, hooks
-- `mise.local.toml`: extra packages for this machine (gitignored)
+- `mise.local.toml`: optional extra packages for one machine (gitignored)
 
 A gitleaks pre-commit hook (`.githooks/`) blocks commits that look like they
 contain secrets.

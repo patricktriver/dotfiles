@@ -1,5 +1,6 @@
 {
   "version": 2,
+  "orchestrator_mode": false,
   "check_for_updates": false,
   "editor": {
     "trim_trailing_whitespace_on_save": true,
@@ -12,13 +13,19 @@
   "keybindings": [
     {
       "key": "b",
-      "modifiers": ["ctrl", "alt"],
+      "modifiers": [
+        "ctrl",
+        "alt"
+      ],
       "action": "toggle_file_explorer",
       "when": "normal"
     },
     {
       "key": "b",
-      "modifiers": ["ctrl", "alt"],
+      "modifiers": [
+        "ctrl",
+        "alt"
+      ],
       "action": "toggle_file_explorer",
       "when": "file_explorer"
     }

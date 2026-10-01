@@ -24,16 +24,16 @@ zoom = ["prefix+z", "ctrl+alt+z"]
 [[keys.command]]
 key = "prefix+d"
 type = "popup"
-command = "zsh -lc 'cd \"$HERDR_ACTIVE_PANE_CWD\" && critique'"
-description = "critique: review git diff here"
+command = "zsh -lc 'herdr-here critique'"
+description = "critique: review this project's git diff"
 width = "90%"
 height = "90%"
 
 [[keys.command]]
 key = "prefix+f"
 type = "popup"
-command = "zsh -lc 'cd \"$HERDR_ACTIVE_PANE_CWD\" && fresh'"
-description = "fresh: editor here"
+command = "zsh -lc 'herdr-here fresh'"
+description = "fresh: edit this project"
 width = "90%"
 height = "90%"
 

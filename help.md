@@ -24,9 +24,12 @@ The mouse also works for everything: click, drag borders, right-click menus.
 
 | Key        | Does                                   |
 |------------|----------------------------------------|
-| `prefix+d` | critique: review git diff in this pane's folder |
-| `prefix+f` | fresh editor in this pane's folder     |
+| `prefix+d` | critique: review this project's git diff |
+| `prefix+f` | fresh: edit this project               |
 | `prefix+i` | this cheatsheet                        |
+
+"This project" = the git repo root of the pane you're in, or its folder if
+it's not a repo. Same as typing `herdr-here fresh` yourself.
 
 ## herdr: panes and tabs
 

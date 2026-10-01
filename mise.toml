@@ -1,5 +1,5 @@
 # Patrick's dotfiles. Apply with `mise bootstrap` from this directory.
-# Work-only packages live in mise.local.toml (gitignored).
+# Machine-only extras can go in mise.local.toml (gitignored).
 
 [bootstrap.packages]
 "brew:herdr" = "latest"
@@ -17,6 +17,20 @@
 "brew-cask:chatgpt" = "latest"
 "brew-cask:bruno" = "latest"
 "brew-cask:spotify" = "latest"
+# Data tools
+"brew:awscli" = "latest"
+"brew:snowflake-cli" = "latest"
+"brew:snowflake" = "latest"
+"brew:unixodbc" = "latest"
+"brew:poppler" = "latest"
+"brew:pytest" = "latest"
+"brew:r" = "latest"
+"brew-cask:dbeaver-community" = "latest"
+"brew-cask:tableau" = "latest"
+"brew-cask:tableplus" = "latest"
+"brew-cask:session-manager-plugin" = "latest"
+"brew-cask:snowflake-snowsql" = "latest"
+"brew-cask:rstudio" = "latest"
 
 [dotfiles]
 "~/.config/mise/config.toml" = { source = "mise/config.toml", mode = "symlink" }
@@ -31,6 +45,7 @@
 "~/.claude/CLAUDE.md" = { source = "claude/CLAUDE.md", mode = "symlink" }
 "~/.claude/RTK.md" = { source = "claude/RTK.md", mode = "symlink" }
 "~/.local/bin/keys" = { source = "bin/keys", mode = "symlink" }
+"~/.local/bin/herdr-here" = { source = "bin/herdr-here", mode = "symlink" }
 
 # Imperative setup the declarative sections can't express. Runs on every
 # bootstrap, so each step is guarded.
