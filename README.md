@@ -34,7 +34,6 @@ Add a brew package: a `"brew:<name>"` or `"brew-cask:<name>"` line under
 | `herdr/config.toml` | `~/.config/herdr/config.toml`              |
 | `fresh/config.json` | `~/.config/fresh/config.json`              |
 | `ghostty/`          | Ghostty's config                           |
-| `claude/`           | `~/.claude/CLAUDE.md`, `~/.claude/RTK.md`  |
 | `bin/keys`          | `~/.local/bin/keys`                        |
 | `bin/herdr-here`    | runs herdr popups in the current project   |
 | `help.md`           | the cheatsheet `keys` prints               |
