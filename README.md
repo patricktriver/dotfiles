@@ -42,7 +42,7 @@ Add a brew package: a `"brew:<name>"` or `"brew-cask:<name>"` line under
 ## Not in this repo (machine-local, never committed)
 
 - `~/.zshrc.local`: sourced at the end of `.zshrc`
-- `~/.gitconfig.local`: email, hooks
+- `~/.gitconfig.local`: git hooks
 - `mise.local.toml`: optional extra packages for one machine (gitignored)
 
 A gitleaks pre-commit hook (`.githooks/`) blocks commits that look like they

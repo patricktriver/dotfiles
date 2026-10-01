@@ -1,8 +1,9 @@
 [user]
 	name = Patrick Byrne
+	email = 208619345+patricktriver@users.noreply.github.com
 [push]
 	autoSetupRemote = true
 
-# Email, hooks and anything work-specific live here, outside the repo.
+# Hooks and anything work-specific live here, outside the repo.
 [include]
 	path = ~/.gitconfig.local
