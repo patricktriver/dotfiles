@@ -98,7 +98,30 @@ Then findings by severity:
 
 🟢 Consider — simplifications, style alignment, discussion points
 
-For each finding: state the issue, explain why it matters, suggest the fix. Reference file names and function names. No padding.
+For each finding: state the issue, explain why it matters, suggest the fix. Reference file names and function names. No padding. Number findings across all groups so the reviewer can say "fix 2 and 5".
+
+Then give a **Recommendation**: the call an EM would actually make, judged across the whole list. There's no quota: the number to fix is whatever honesty gives, from none to all of them. Don't pad to look thorough or trim to look decisive. Put every numbered finding in exactly one bucket, with a one-line reason:
+
+- **Fix before merge**: passes every test below.
+- **Follow-up**: worth doing, but not in this PR (fails "in scope" or "safe", or needs its own test to be trusted). Say what the ticket would be.
+- **Skip**: not worth it. Say why plainly ("taste, not risk", "the fix costs more than the problem").
+
+A fix goes in "fix before merge" only if all of these hold:
+
+- **Worth it.** It removes a concrete risk or a real maintenance cost, not a preference.
+- **Proportionate.** The fix is smaller than the problem. No new abstraction, layer, config option or dependency to solve a one-off. A fix that deletes code beats one that adds it.
+- **Safe.** It doesn't change what callers outside the diff see, and it doesn't add new risk to code that already works.
+- **No cost.** It adds no queries, API calls, warehouse compute, memory or latency at the expected load.
+- **In scope.** It belongs to the change this PR makes. Refactoring code the PR didn't touch is a follow-up.
+
+Every 🔴 goes in "fix before merge" unless you say why not (it's acknowledged debt, say). A 🟢 is usually a skip unless it's nearly free.
+
+```
+**Fix before merge:** 1, 3, 4
+- 1: <reason>
+**Follow-up:** 6: <reason and ticket>
+**Skip:** 2, 5: <reason>
+```
 
 End with a **Verdict** block:
 
@@ -109,10 +132,7 @@ End with a **Verdict** block:
 
 <One sentence justification.>
 
-Before merge:
-- <item 1>
-- <item 2>
-- <item 3 if needed>
+Before merge: <the "fix before merge" numbers, or "nothing">
 ```
 
-Use APPROVE if there are only 🟢 items or minor 🟡 items that don't affect correctness or testability. REQUEST CHANGES if there are 🟡 items that weaken the codebase. BLOCK if there are any 🔴 items.
+Use APPROVE if there are only 🟢 items or minor 🟡 items that don't affect correctness or testability. REQUEST CHANGES if there are 🟡 items that weaken the codebase. BLOCK if there are any 🔴 items. "Before merge" lists exactly the "fix before merge" bucket, however many that is.
