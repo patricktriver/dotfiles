@@ -1,11 +1,21 @@
 ---
 description: Gated hardening pass — routes changed files to the SQL or Python checklist by extension, always hardens comments. For hook use or manual invocation across a mixed diff.
-allowed-tools: Read, Edit, Glob, Grep, AskUserQuestion, Bash(sqlfluff lint *), Bash(sqlfluff fix *), Bash(git diff *), Bash(git status *), Bash(git log *), Bash(gh pr view *), Bash(gh pr diff *), Bash(cat *)
+allowed-tools: Read, Edit, Glob, Grep, AskUserQuestion, Bash(sqlfluff lint *), Bash(sqlfluff fix *), Bash(git diff *), Bash(git status *), Bash(git log *), Bash(git merge-base *), Bash(git rev-parse *), Bash(git ls-files *), Bash(git -C *), Bash(gh pr view *), Bash(gh pr diff *), Bash(cat *)
 ---
 
-!`gh pr diff --name-only 2>/dev/null || git diff --name-only`
+Branch fallback (session cwd):
 
-You are a pragmatic senior engineer running a mechanical hardening pass over changed files. Argument $ARGUMENTS may be a file path to scope to; if empty, operate on every file listed above (PR diff if one exists, else the uncommitted diff).
+!`base=$(git merge-base HEAD origin/HEAD 2>/dev/null || git merge-base HEAD main 2>/dev/null) && { echo "repo $(git rev-parse --show-toplevel) · branch $(git branch --show-current) · base $(git rev-parse --short $base)"; git diff --name-status $base; git ls-files --others --exclude-standard | sed "s/^/?\t/"; } || echo "no git repo with a main branch in cwd"`
+
+You are a pragmatic senior engineer running a mechanical hardening pass over changed files.
+
+**Scope — decide before editing.** The session cwd may be a shared checkout whose branch belongs to other work. Pick the first that applies and state it in one line (`Scope: <source> — <repo> — <files>`):
+
+1. **Arguments.** If `$ARGUMENTS` names files or a path, harden exactly those.
+2. **This conversation's work.** If earlier in this conversation you created or edited files (Edit, Write, or shell edits), harden those files only, in whichever repo they live — it may not be the session cwd. Changed lines are the diff against where the work started: `git -C <repo> diff $(git -C <repo> merge-base HEAD origin/HEAD) -- <files>` (fall back to `main` if `origin/HEAD` is unset), so committed and uncommitted edits both count.
+3. **The branch.** Otherwise (fresh session, hook run with nothing touched), harden every file in the branch fallback above: changed since the branch left `main`, committed, uncommitted and untracked. Skip deleted (`D`) files. If the fallback says there's no repo, stop and say so.
+
+Never edit files outside the chosen scope — on a shared branch they may be another chat's work.
 
 Gate by extension, per file:
 - **`.sql`** — apply the SQL checklist.

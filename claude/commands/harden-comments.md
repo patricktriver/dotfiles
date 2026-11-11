@@ -1,13 +1,23 @@
 ---
-description: Harden the comments in files touched by the PR — direct, why-focused, no dangling doc refs, not brittle, not verbose
-allowed-tools: Read, Edit, Glob, Grep, AskUserQuestion, Bash(git diff *), Bash(git log *), Bash(git status *), Bash(gh pr view *), Bash(gh pr diff *)
+description: Harden the comments in files touched by the current work — direct, why-focused, no dangling doc refs, not brittle, not verbose
+allowed-tools: Read, Edit, Glob, Grep, AskUserQuestion, Bash(git diff *), Bash(git log *), Bash(git status *), Bash(git merge-base *), Bash(git rev-parse *), Bash(git ls-files *), Bash(git -C *), Bash(gh pr view *), Bash(gh pr diff *)
 ---
 
-!`gh pr diff --name-only 2>/dev/null || git diff main...HEAD --name-only`
+Branch fallback (session cwd):
 
-You are a pragmatic senior engineer cleaning up comments in someone's PR. Argument $ARGUMENTS may be a file path to scope to; if empty, operate on every file in the PR listed above. If `gh` returned no PR, fall back to the uncommitted/branch diff.
+!`base=$(git merge-base HEAD origin/HEAD 2>/dev/null || git merge-base HEAD main 2>/dev/null) && { echo "repo $(git rev-parse --show-toplevel) · branch $(git branch --show-current) · base $(git rev-parse --short $base)"; git diff --name-status $base; git ls-files --others --exclude-standard | sed "s/^/?\t/"; } || echo "no git repo with a main branch in cwd"`
 
-Scope is the comments only — code, signatures, and logic stay untouched. Work only on lines the PR actually added or changed (use the diff); don't rewrite pre-existing comments the author didn't touch unless they're directly adjacent to changed code and now wrong.
+You are a pragmatic senior engineer cleaning up comments in someone's change.
+
+**Which files — decide before editing.** The session cwd may be a shared checkout whose branch belongs to other work. Pick the first that applies and state it in one line (`Scope: <source> — <repo> — <files>`):
+
+1. **Arguments.** If `$ARGUMENTS` names files, a path or a PR number, use exactly those (`gh pr diff <n>` for a PR).
+2. **This conversation's work.** If earlier in this conversation you created or edited files (Edit, Write, or shell edits), use those files only, in whichever repo they live — it may not be the session cwd. Changed lines are the diff against where the work started: `git -C <repo> diff $(git -C <repo> merge-base HEAD origin/HEAD) -- <files>` (fall back to `main` if `origin/HEAD` is unset), so committed and uncommitted edits both count.
+3. **The branch.** Otherwise (fresh session, nothing touched), use every file in the branch fallback above: changed since the branch left `main`, committed, uncommitted and untracked. Skip deleted (`D`) files. If the fallback says there's no repo, stop and say so.
+
+Never edit files outside the chosen scope — on a shared branch they may be another chat's work.
+
+Scope is the comments only — code, signatures, and logic stay untouched. Work only on lines the change actually added or changed (use the diff); don't rewrite pre-existing comments the author didn't touch unless they're directly adjacent to changed code and now wrong.
 
 Read each target file before editing so you judge the comment against the real code, not the diff hunk alone.
 

@@ -1,19 +1,25 @@
 ---
 description: Engineering manager code review — Triver conventions, correctness, patterns, AI code failure modes
-allowed-tools: Read, Glob, Grep, Bash(git diff *), Bash(git log *), Bash(cat *)
+allowed-tools: Read, Glob, Grep, Bash(git diff *), Bash(git log *), Bash(git merge-base *), Bash(git rev-parse *), Bash(git ls-files *), Bash(git status *), Bash(git -C *), Bash(gh pr view *), Bash(gh pr diff *), Bash(cat *)
 ---
 
-## Context
+## Branch fallback (session cwd)
 
-!`git diff main...HEAD --stat`
-
-## Changed files
-
-!`git diff main...HEAD`
+!`base=$(git merge-base HEAD origin/HEAD 2>/dev/null || git merge-base HEAD main 2>/dev/null) && { echo "repo $(git rev-parse --show-toplevel) · branch $(git branch --show-current) · base $(git rev-parse --short $base)"; git diff --name-status $base; git ls-files --others --exclude-standard | sed "s/^/?\t/"; } || echo "no git repo with a main branch in cwd"`
 
 ## Task
 
 $ARGUMENTS
+
+## Scope — decide before reading anything
+
+The session cwd may be a shared checkout whose branch belongs to other work, so don't assume it is the thing to review. Pick the first that applies and state it in one line (`Scope: <source> — <repo> — <files>`):
+
+1. **Arguments.** If the task above names files, a path, a PR number or a branch, review exactly that.
+2. **This conversation's work.** If earlier in this conversation you created or edited files (Edit, Write, or shell edits), or checked out / were asked to work on a specific PR or branch, that is the scope. Review those files only, in whichever repo they live — it may not be the session cwd. For each repo, diff against where the work started: `git -C <repo> diff $(git -C <repo> merge-base HEAD origin/HEAD) -- <files>` (fall back to `main` if `origin/HEAD` is unset), so committed and uncommitted changes both show. For a named PR use `gh pr diff <n>`.
+3. **The branch.** Otherwise (fresh session, nothing touched), review the branch fallback listed above: everything changed since it left `main`, committed, uncommitted and untracked. Get the content with `git diff <base>` and Read untracked files. If the fallback says there's no repo, ask which repo or PR to review.
+
+Don't widen scope to other files on the branch — they may be another chat's work. Do still read callers and tests outside the scope (see below); they're context, not review targets.
 
 ## Sources of truth
 
